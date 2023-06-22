@@ -5,9 +5,47 @@ import navbar from '../assets/portfolio/navbar.jpg'
 import reactParallax from '../assets/portfolio/reactParallax.jpg'
 import reactSmooth from '../assets/portfolio/reactSmooth.jpg'
 import reactWeather from '../assets/portfolio/reactWeather.jpg'
-import usestate from '../assets/portfolio/usestate.jpg'
 
 const Portfolio = () => {
+  const projects = [
+    {
+      id: 1,
+      src: arrayDestruct,
+      demo: '',
+      href: ''
+    },
+    {
+      id: 2,
+      src: installNode,
+      demo: '',
+      href: ''
+    },
+    {
+      id: 3,
+      src: navbar,
+      demo: '',
+      href: ''
+    },
+    {
+      id: 4,
+      src: reactParallax,
+      demo: '',
+      href: ''
+    },
+    {
+      id: 5,
+      src: reactSmooth,
+      demo: '',
+      href: ''
+    },
+    {
+      id: 6,
+      src: reactWeather,
+      demo: '',
+      href: ''
+    }
+  ]
+
   return (
     <div
       name="portfolio"
@@ -19,17 +57,23 @@ const Portfolio = () => {
           <p className="py-6">Check out my work here!</p>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0">
-          <div className="shadow-md shadow-gray-600 rounded-lg">
-            <img
-              src={reactParallax}
-              alt=""
-              className="rounded-md duration-200 hover:scale-105 cursor-pointer"
-            />
-            <div className="flex items-center justify-center">
-              <button>Demo</button>
-              <button>Code</button>
+          {projects.map(({ id, src }) => (
+            <div key={id} className="shadow-md shadow-gray-600 rounded-lg">
+              <img
+                src={src}
+                alt=""
+                className="rounded-md duration-200 hover:scale-105 cursor-pointer"
+              />
+              <div className="flex items-center justify-center">
+                <button className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105">
+                  Demo
+                </button>
+                <button className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105">
+                  Code
+                </button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
