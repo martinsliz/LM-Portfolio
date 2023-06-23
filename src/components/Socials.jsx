@@ -28,7 +28,7 @@ const Socials = () => {
       id: 3,
       child: (
         <>
-          Mail <HiOutlineMail size={30} />
+          Contact <HiOutlineMail size={30} />
         </>
       ),
       href: 'mailto:elizabeth.martins5@gmail.com',
