@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
+  const form = useRef()
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        form.current,
+        'YOUR_PUBLIC_KEY'
+      )
+      .then(
+        (result) => {
+          console.log(result.text)
+        },
+        (error) => {
+          console.log(error.text)
+        }
+      )
+  }
   return (
     <div
       name="contact"
@@ -15,29 +37,35 @@ const Contact = () => {
         </div>
         <div className="flex justify-start items-center">
           <form
-            action="https://getform.io/f/32653e32-e14f-48f3-aa69-540a78ee9444"
-            method="POST"
+            ref={form}
+            onSubmit={sendEmail}
             className="flex flex-col w-full md:w-1/2"
           >
+            <label className="mb-2">Name:</label>
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
-            />{' '}
+            />
+            <label className="my-2">Email:</label>
             <input
               type="text"
               name="email"
               placeholder="Email"
-              className="my-4 p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
+              className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
+            <label className="my-2">Message:</label>
             <textarea
               name="message"
               placeholder="Your message here"
               rows={10}
               className="p-2 bg-transparent border-2 text-white focus:outline-none"
             />
-            <button className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">
+            <button
+              onClick={sendEmail}
+              className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300"
+            >
               Submit
             </button>
           </form>
