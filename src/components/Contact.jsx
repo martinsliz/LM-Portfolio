@@ -9,14 +9,16 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_8ay9f2b',
+        'template_zkw8mc9',
         form.current,
-        'YOUR_PUBLIC_KEY'
+        'bbZBg8XsTFx9ioUGH'
       )
       .then(
         (result) => {
           console.log(result.text)
+          console.log('Message sent!')
+          // e.target.reset()
         },
         (error) => {
           console.log(error.text)
@@ -36,23 +38,19 @@ const Contact = () => {
           <p className="py-6">Get in touch by submitting this form!</p>
         </div>
         <div className="flex justify-start items-center">
-          <form
-            ref={form}
-            onSubmit={sendEmail}
-            className="flex flex-col w-full md:w-1/2"
-          >
+          <form ref={form} className="flex flex-col w-full md:w-1/2">
             <label className="mb-2">Name:</label>
             <input
               type="text"
-              name="name"
-              placeholder="Your Name"
+              name="user_name"
+              placeholder="Your name"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
             <label className="my-2">Email:</label>
             <input
               type="text"
-              name="email"
-              placeholder="Email"
+              name="user_email"
+              placeholder="Your email"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
             <label className="my-2">Message:</label>
