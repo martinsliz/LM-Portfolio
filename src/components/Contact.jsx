@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const form = useRef()
+  const [sent, setSent] = useState(false)
 
   const sendEmail = (e) => {
     e.preventDefault()
@@ -17,8 +18,9 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text)
-          console.log('Message sent!')
-          // e.target.reset()
+          setSent(true)
+          console.log(sent)
+          form.current.reset()
         },
         (error) => {
           console.log(error.text)
@@ -39,27 +41,40 @@ const Contact = () => {
         </div>
         <div className="flex justify-start items-center">
           <form ref={form} className="flex flex-col w-full md:w-1/2">
-            <label className="mb-2">Name:</label>
+            <label className="mb-3">Name:</label>
             <input
               type="text"
               name="user_name"
               placeholder="Your name"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
-            <label className="my-2">Email:</label>
+            <label className="mt-4 mb-2">Email:</label>
             <input
               type="text"
               name="user_email"
               placeholder="Your email"
               className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
             />
-            <label className="my-2">Message:</label>
+            <label className="mt-4 mb-2">Message:</label>
             <textarea
               name="message"
               placeholder="Your message here"
               rows={10}
               className="p-2 bg-transparent border-2 text-white focus:outline-none"
             />
+            {sent ? (
+              <div>
+                <div className="flex justify-center items-center">
+                  <h2 className="mt-6 text-lg">
+                    Thanks, I look forward to speaking with you!
+                  </h2>
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center">
+                <h2 className="mt-6 text-lg"> </h2>
+              </div>
+            )}
             <button
               onClick={sendEmail}
               className="text-white bg-gradient-to-b from-cyan-500 to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300"
