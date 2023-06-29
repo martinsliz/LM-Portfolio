@@ -1,48 +1,34 @@
 import React from 'react'
-import arrayDestruct from '../assets/portfolio/arrayDestruct.jpg'
-import installNode from '../assets/portfolio/installNode.jpg'
+import Bella_Logo from '../assets/portfolio/Bella_Logo.png'
+import ClassConnect from '../assets/portfolio/ClassConnect.png'
+import TicTacToe from '../assets/portfolio/TicTacToe.png'
 import navbar from '../assets/portfolio/navbar.jpg'
-import reactParallax from '../assets/portfolio/reactParallax.jpg'
-import reactSmooth from '../assets/portfolio/reactSmooth.jpg'
-import reactWeather from '../assets/portfolio/reactWeather.jpg'
 
 const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      src: arrayDestruct,
+      src: Bella_Logo,
       demo: '',
-      href: ''
+      href: 'https://github.com/martinsliz/Bella-Luna-Designs'
     },
     {
       id: 2,
-      src: installNode,
+      src: ClassConnect,
       demo: '',
-      href: ''
+      href: 'https://github.com/martinsliz/Class-Connect'
+    },
+    {
+      id: 4,
+      src: TicTacToe,
+      demo: '',
+      href: 'https://github.com/martinsliz/tic-tac-toe'
     },
     {
       id: 3,
       src: navbar,
       demo: '',
-      href: ''
-    },
-    {
-      id: 4,
-      src: reactParallax,
-      demo: '',
-      href: ''
-    },
-    {
-      id: 5,
-      src: reactSmooth,
-      demo: '',
-      href: ''
-    },
-    {
-      id: 6,
-      src: reactWeather,
-      demo: '',
-      href: ''
+      href: 'https://github.com/martinsliz/The-Bucket-list-Bucket'
     }
   ]
 
@@ -57,7 +43,7 @@ const Portfolio = () => {
           <p className="py-6">Check out my work here!</p>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-12 sm:px-0">
-          {projects.map(({ id, src }) => (
+          {projects.map(({ id, src, demo, href }) => (
             <div key={id} className="shadow-md shadow-gray-600 rounded-lg">
               <img
                 src={src}
@@ -66,10 +52,17 @@ const Portfolio = () => {
               />
               <div className="flex items-center justify-center">
                 <button className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105">
-                  Demo
+                  Demo {demo}
                 </button>
                 <button className="w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105">
-                  Code
+                  <a
+                    href={href}
+                    className="flex justify-between items-center w-full text-white"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Code
+                  </a>
                 </button>
               </div>
             </div>
